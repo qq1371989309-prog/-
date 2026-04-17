@@ -1,0 +1,11 @@
+{
+  "global_scoped_rule": {
+    "enabled": true,
+    "match": {
+      "col2": "1",
+      "col3": "3"
+    },
+    "replace_column_index": 0,
+    "mapping_source": "Device_1_3"
+  }
+}
