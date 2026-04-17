@@ -6,60 +6,255 @@
 <HTA:APPLICATION APPLICATIONNAME="MAPTOOL" SCROLL="yes" SINGLEINSTANCE="yes" BORDER="thin" CAPTION="yes" MAXIMIZEBUTTON="yes" MINIMIZEBUTTON="yes">
 <style>
 html, body { width:100%; height:100%; }
-body { margin:0; padding:0; font-family:Microsoft YaHei,SimSun,Arial; font-size:14px; }
-body.day { background:#f4f7fb; color:#1f2937; }
-body.night { background:#08111f; color:#eef6ff; }
-.page { max-width:1080px; margin:0 auto; padding:18px; }
-.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
-.title { font-size:28px; font-weight:bold; letter-spacing:1px; }
+body {
+  margin:0;
+  padding:0;
+  font-family:Microsoft YaHei,SimSun,Arial;
+  font-size:15px;
+}
+body.day {
+  background:#edf3f9;
+  color:#111827;
+}
+body.night {
+  background:#0f172a;
+  color:#eef6ff;
+}
+.page {
+  max-width:1020px;
+  margin:0 auto;
+  padding:18px;
+}
+.topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+.title {
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:1px;
+}
 body.day .title { color:#0f172a; }
 body.night .title { color:#f8fbff; }
-.theme-btn { width:42px; height:42px; border-radius:50%; min-width:42px; padding:0; font-size:16px; }
-.hero { padding:16px 18px; border-radius:18px; margin-bottom:16px; line-height:1.8; }
-body.day .hero { background:linear-gradient(180deg,#ffffff 0%,#edf5ff 100%); border:1px solid #dbe7f3; box-shadow:0 6px 18px rgba(15,23,42,.05); color:#1f2937; }
-body.night .hero { background:linear-gradient(180deg,#0d1a2e 0%,#12233d 100%); border:1px solid #274c77; box-shadow:0 10px 24px rgba(2,8,23,.35); color:#eef6ff; }
-.layout { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-.section { padding:18px; border-radius:18px; }
-body.day .section { background:#ffffff; border:1px solid #dbe7f3; box-shadow:0 6px 18px rgba(15,23,42,.05); }
-body.night .section { background:#0f1b30; border:1px solid #274c77; box-shadow:0 10px 24px rgba(2,8,23,.28); }
-.section h2 { margin:0 0 14px 0; font-size:18px; }
-.field { margin-bottom:14px; }
-.label { display:block; margin-bottom:6px; font-weight:bold; font-size:15px; }
+
+.theme-btn {
+  width:44px;
+  height:44px;
+  min-width:44px;
+  border-radius:12px;
+  border:1px solid #c8d4e3;
+  background:#ffffff;
+  color:#2563eb;
+  font-weight:800;
+  cursor:pointer;
+}
+body.night .theme-btn {
+  background:#162235;
+  border-color:#3d5a80;
+  color:#dbeafe;
+}
+
+.banner {
+  padding:14px 16px;
+  border-radius:16px;
+  margin-bottom:14px;
+  line-height:1.8;
+  font-size:14px;
+}
+body.day .banner {
+  background:#ffffff;
+  border:1px solid #d9e5f1;
+  box-shadow:0 4px 10px rgba(15,23,42,.04);
+  color:#1f2937;
+}
+body.night .banner {
+  background:#132033;
+  border:1px solid #30496d;
+  color:#e5eefc;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:14px;
+}
+.panel {
+  border-radius:16px;
+  padding:16px;
+}
+body.day .panel {
+  background:#ffffff;
+  border:1px solid #d9e5f1;
+  box-shadow:0 4px 10px rgba(15,23,42,.04);
+}
+body.night .panel {
+  background:#132033;
+  border:1px solid #30496d;
+}
+.panel h2 {
+  margin:0 0 14px 0;
+  font-size:20px;
+}
+.field {
+  margin-bottom:14px;
+}
+.label {
+  display:block;
+  margin-bottom:6px;
+  font-weight:800;
+  font-size:15px;
+}
 body.day .label { color:#0f172a; }
 body.night .label { color:#ffffff; }
-.desc { margin-top:6px; font-size:12px; line-height:1.7; }
-body.day .desc, body.day .footer { color:#475569; }
-body.night .desc, body.night .footer { color:#d6e8ff; }
-select, button, textarea { font-family:Microsoft YaHei,SimSun,Arial; font-size:14px; }
-select { width:100%; height:46px; box-sizing:border-box; border-radius:12px; padding:6px 12px; outline:none; }
-body.day select { border:1px solid #cbd5e1; background:#ffffff; color:#0f172a; }
-body.night select { border:1px solid #4b6b92; background:#f8fbff; color:#0f172a; }
-select:focus { box-shadow:0 0 0 3px rgba(59,130,246,.18); }
-.actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-button { min-width:146px; padding:11px 16px; border-radius:12px; border:0; cursor:pointer; font-weight:bold; }
-body.day button { background:linear-gradient(180deg,#38bdf8 0%,#2563eb 60%,#1e3a8a 100%); color:#ffffff; box-shadow:0 8px 16px rgba(37,99,235,.18); }
-body.night button { background:linear-gradient(180deg,#38bdf8 0%,#2563eb 60%,#1e3a8a 100%); color:#ffffff; box-shadow:0 10px 18px rgba(37,99,235,.28); }
-button.ghost { background:linear-gradient(180deg,#e2e8f0 0%,#cbd5e1 100%); color:#0f172a; }
-body.night button.ghost { background:linear-gradient(180deg,#334155 0%,#1f2937 100%); color:#ffffff; }
-button.secondary { background:linear-gradient(180deg,#22c55e 0%,#0f766e 100%); color:#ffffff; }
-button.contact { background:linear-gradient(180deg,#06b6d4 0%,#0284c7 100%); color:#ffffff; }
-.dir-list { line-height:1.9; }
-.dir-list div { margin-bottom:8px; }
-#pairs { margin:14px 0 0 18px; padding:0; }
-#pairs li { margin:8px 0; line-height:1.8; }
-body.day #pairs li { color:#1f2937; }
+
+.helper {
+  margin-top:6px;
+  font-size:12px;
+  line-height:1.65;
+}
+body.day .helper { color:#64748b; }
+body.night .helper { color:#c9d7ea; }
+
+select, button, textarea {
+  font-family:Microsoft YaHei,SimSun,Arial;
+  font-size:15px;
+}
+select {
+  width:100%;
+  height:50px;
+  box-sizing:border-box;
+  border-radius:12px;
+  padding:8px 12px;
+  outline:none;
+}
+body.day select {
+  border:2px solid #c9d5e2;
+  background:#ffffff;
+  color:#111827;
+}
+body.night select {
+  border:2px solid #5d789b;
+  background:#ffffff;
+  color:#111827;
+}
+select:focus {
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,.14);
+}
+
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+button {
+  min-width:150px;
+  padding:12px 16px;
+  border-radius:12px;
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+}
+button.primary {
+  background:#2563eb;
+  color:#ffffff;
+  box-shadow:0 8px 16px rgba(37,99,235,.18);
+}
+button.secondary {
+  background:#059669;
+  color:#ffffff;
+  box-shadow:0 8px 16px rgba(5,150,105,.18);
+}
+button.ghost {
+  background:#e2e8f0;
+  color:#0f172a;
+}
+body.night button.ghost {
+  background:#334155;
+  color:#ffffff;
+}
+button.contact {
+  background:#0891b2;
+  color:#ffffff;
+}
+
+.flow-note {
+  margin-top:8px;
+  font-size:13px;
+  line-height:1.7;
+  font-weight:700;
+}
+body.day .flow-note { color:#1e40af; }
+body.night .flow-note { color:#93c5fd; }
+
+#pairs {
+  margin:14px 0 0 18px;
+  padding:0;
+}
+#pairs li {
+  margin:8px 0;
+  line-height:1.8;
+}
+body.day #pairs li { color:#111827; }
 body.night #pairs li { color:#ffffff; }
-#pairs a { color:#0ea5e9; text-decoration:none; }
-textarea { width:100%; height:290px; box-sizing:border-box; border-radius:14px; padding:12px; }
-body.day textarea { border:1px solid #cbd5e1; background:#ffffff; color:#0f172a; }
-body.night textarea { border:1px solid #4b6b92; background:#f8fbff; color:#0f172a; }
-.footer { text-align:center; font-size:12px; line-height:1.9; margin-top:10px; }
-.footer a { color:#0ea5e9; text-decoration:none; }
+#pairs a {
+  color:#0ea5e9;
+  text-decoration:none;
+}
+
+.dir-list {
+  line-height:1.9;
+}
+.dir-list div {
+  margin-bottom:8px;
+}
+.dir-list b {
+  display:inline-block;
+  min-width:120px;
+}
+
+.log-panel {
+  margin-bottom:12px;
+}
+textarea {
+  width:100%;
+  height:300px;
+  box-sizing:border-box;
+  border-radius:12px;
+  padding:12px;
+}
+body.day textarea {
+  border:2px solid #c9d5e2;
+  background:#ffffff;
+  color:#111827;
+}
+body.night textarea {
+  border:2px solid #5d789b;
+  background:#ffffff;
+  color:#111827;
+}
+
+.footer {
+  text-align:center;
+  font-size:12px;
+  line-height:1.9;
+  margin-top:10px;
+}
+body.day .footer { color:#64748b; }
+body.night .footer { color:#d6e8ff; }
+.footer a {
+  color:#2563eb;
+  text-decoration:none;
+}
+
 @media (max-width:900px) {
-  .topbar { align-items:flex-start; }
   .layout { grid-template-columns:1fr; }
-  button { min-width:0; width:100%; }
-  .theme-btn { width:42px; }
+  button { width:100%; min-width:0; }
 }
 </style>
 </head>
@@ -67,40 +262,48 @@ body.night textarea { border:1px solid #4b6b92; background:#f8fbff; color:#0f172
 <div class="page">
   <div class="topbar">
     <div class="title">风机仿真替换工具</div>
-    <button id="themeBtn" class="theme-btn ghost" onclick="toggleTheme()">日</button>
+    <button id="themeBtn" class="theme-btn" onclick="toggleTheme()">日</button>
   </div>
 
-  <div class="hero">
-    将 <b>本机（有故障需要仿真的）</b> 的 .map 第1列值，替换为 <b>目标风机（被仿的无故障的）</b> 的对应地址值。
+  <div class="banner">
+    <b>当前操作：</b>把 <b>目标风机</b> 的头数据写到 <b>本机</b> 里。
   </div>
 
   <div class="layout">
-    <div class="section">
-      <h2>仿真关系配置</h2>
+    <div class="panel">
+      <h2>选择仿真关系</h2>
+
       <div class="field">
         <label class="label">本机（有故障需要仿真的）</label>
         <select id="target"></select>
-        <div class="desc">本机 = 被修改对象</div>
+        <div class="helper">被修改对象</div>
       </div>
+
       <div class="field">
         <label class="label">目标风机（被仿的无故障的）</label>
         <select id="source"></select>
-        <div class="desc">目标风机 = 提供参考值对象</div>
+        <div class="helper">提供参考值对象</div>
       </div>
+
       <div class="actions">
-        <button onclick="addPair()">添加这一组</button>
+        <button class="primary" onclick="addPair()">添加这一组</button>
         <button class="ghost" onclick="clearPairs()">清空已选</button>
       </div>
+
+      <div class="flow-note">先添加关系，再点击下方“开始批量替换”。</div>
+
       <ul id="pairs"></ul>
     </div>
 
-    <div class="section">
+    <div class="panel">
       <h2>固定运行目录</h2>
+
       <div class="dir-list">
-        <div><b>input_maps</b>　原始 .map 文件目录</div>
-        <div><b>output_maps</b>　替换后的 .map 文件目录</div>
-        <div><b>reports</b>　替换明细 .csv 报告目录，可直接核对谁仿谁和替换前后值</div>
+        <div><b>input_maps</b> 原始 .map 文件目录</div>
+        <div><b>output_maps</b> 替换后的 .map 文件目录</div>
+        <div><b>reports</b> 替换明细 .csv 报告目录，可直接核对谁仿谁和替换前后值</div>
       </div>
+
       <div class="actions">
         <button class="secondary" onclick="openInput()">打开 input_maps</button>
         <button class="secondary" onclick="openOutput()">打开 output_maps</button>
@@ -109,10 +312,10 @@ body.night textarea { border:1px solid #4b6b92; background:#f8fbff; color:#0f172
     </div>
   </div>
 
-  <div class="section">
+  <div class="panel log-panel">
     <h2>执行与日志</h2>
     <div class="actions">
-      <button onclick="runTool()">开始批量替换</button>
+      <button class="primary" onclick="runTool()">开始批量替换</button>
       <button class="contact" onclick="openGithub()">联系作者 / 项目地址</button>
     </div>
     <textarea id="log"></textarea>
@@ -126,6 +329,8 @@ body.night textarea { border:1px solid #4b6b92; background:#f8fbff; color:#0f172
 </div>
 
 <script language="javascript">
+
+
 
 
 var DEVICES = ["F1-01FJ", "F1-02FJ", "F1-03FJ", "F2-04FJ", "F2-05FJ", "F3-06FJ", "F3-07FJ", "F3-08FJ", "F4-09FJ", "F4-10FJ", "F5-11FJ", "F5-12FJ", "F5-13FJ", "F6-14FJ", "F6-15FJ", "F7-16FJ", "F7-17FJ", "F7-18FJ", "F8-19FJ", "F8-20FJ"];
@@ -433,6 +638,8 @@ function runTool() {
 }
 
 init();
+
+
 
 </script>
 </body>
